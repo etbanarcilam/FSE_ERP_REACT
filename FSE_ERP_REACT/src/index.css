@@ -1,0 +1,68 @@
+/* ==========================================================================
+   ESTILOS BASE DEL SISTEMA FSE_ERP (REACT)
+   Autor: Aprendiz ADSO (Análisis y Desarrollo de Software)
+   Descripción: Variables globales, tipografía y clases sencillas e
+   identificables que replican fielmente el diseño del proyecto en Laravel.
+   ========================================================================== */
+
+:root {
+  --color-primario: #2563eb;
+  --color-primario-hover: #1d4ed8;
+  --color-indigo: #4f46e5;
+  --color-indigo-hover: #4338ca;
+  --color-exito: #059669;
+  --color-advertencia: #d97706;
+  --color-peligro: #e11d48;
+  --color-pizarra-900: #0f172a;
+  --color-pizarra-800: #1e293b;
+  --color-pizarra-700: #334155;
+  --color-pizarra-600: #475569;
+  --color-pizarra-500: #64748b;
+  --color-pizarra-400: #94a3b8;
+  --color-pizarra-300: #cbd5e1;
+  --color-pizarra-200: #e2e8f0;
+  --color-pizarra-100: #f1f5f9;
+  --color-pizarra-50: #f8fafc;
+  --fondo-sistema: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  --fondo-oscuro: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+  background: var(--fondo-sistema);
+  background-attachment: fixed;
+  color: var(--color-pizarra-800);
+  min-height: 100vh;
+}
+
+/* Barra de desplazamiento moderna */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Reglas para impresión oficial */
+@media print {
+  .no-imprimir {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+  }
+}

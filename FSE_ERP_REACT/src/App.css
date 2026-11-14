@@ -1,0 +1,796 @@
+/* ==========================================================================
+   CLASES VISUALES DE COMPONENTES FSE_ERP
+   Autor: Aprendiz ADSO
+   Nota: Nombres de clases cortos, semánticos y fáciles de identificar.
+   ========================================================================== */
+
+/* --- 1. PANTALLAS DE LOGIN Y SELECCIÓN DE INSTITUCIÓN --- */
+.pantalla-oscura {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+  background: var(--fondo-oscuro);
+  color: #f1f5f9;
+}
+
+.cabecera-acceso {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.titulo-degradado {
+  font-size: 1.75rem;
+  font-weight: 900;
+  background: linear-gradient(90deg, #60a5fa, #7dd3fc, #a5b4fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0.025em;
+}
+
+.subtitulo-acceso {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin-top: 0.4rem;
+  font-weight: 500;
+}
+
+.contenedor-login {
+  max-width: 28rem;
+  width: 100%;
+  margin: auto;
+}
+
+.contenedor-instituciones {
+  max-width: 42rem;
+  width: 100%;
+  margin: auto;
+}
+
+.tarjeta-oscura {
+  background: rgba(30, 41, 59, 0.72);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.encabezado-tarjeta-oscura {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(51, 65, 85, 0.6);
+}
+
+.punto-pulso {
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background-color: #3b82f6;
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+
+.campo-oscuro {
+  width: 100%;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(51, 65, 85, 0.85);
+  border-radius: 0.75rem;
+  padding: 0.8rem 1rem;
+  font-size: 0.875rem;
+  color: #f1f5f9;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.campo-oscuro:focus {
+  border-color: var(--color-primario);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+}
+
+.lista-instituciones {
+  max-height: 360px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin: 1rem 0;
+  padding-right: 0.25rem;
+}
+
+.item-institucion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background: rgba(15, 23, 42, 0.45);
+  border: 1px solid rgba(30, 41, 59, 0.9);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.item-institucion:hover {
+  background: rgba(30, 58, 138, 0.28);
+  border-color: rgba(59, 130, 246, 0.45);
+}
+
+/* --- 2. LAYOUT GENERAL DEL SISTEMA --- */
+.contenedor-app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.encabezado-superior {
+  background-color: var(--color-pizarra-900);
+  color: #ffffff;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--color-pizarra-800);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.barra-interna {
+  max-width: 80rem;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.selector-modulo-caja {
+  position: relative;
+}
+
+.boton-selector-modulo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--color-pizarra-800);
+  color: #ffffff;
+  border: 1px solid var(--color-pizarra-700);
+  padding: 0.6rem 1.25rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.boton-selector-modulo:hover {
+  background-color: var(--color-pizarra-700);
+}
+
+.menu-modulos {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 0.5rem);
+  width: 14rem;
+  background-color: #020617;
+  border: 1px solid var(--color-pizarra-800);
+  border-radius: 0.75rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  z-index: 100;
+}
+
+.opcion-modulo {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.25rem;
+  font-size: 0.875rem;
+  color: #cbd5e1;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #0f172a;
+  cursor: pointer;
+  text-align: left;
+}
+
+.opcion-modulo:hover,
+.opcion-modulo-activa {
+  background-color: #172554;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.punto-activo {
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  background-color: var(--color-primario);
+}
+
+.info-sesion {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  font-size: 0.8rem;
+  color: #cbd5e1;
+}
+
+.datos-usuario-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  border-right: 1px solid var(--color-pizarra-700);
+  padding-right: 1rem;
+  line-height: 1.35;
+}
+
+.enlace-cambiar-inst {
+  background: none;
+  border: none;
+  color: #60a5fa;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 0.15rem;
+}
+
+.boton-salir {
+  background: rgba(15, 23, 42, 0.5);
+  color: #cbd5e1;
+  border: 1px solid var(--color-pizarra-700);
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.boton-salir:hover {
+  color: #f87171;
+  border-color: rgba(127, 29, 29, 0.6);
+  background: rgba(127, 29, 29, 0.15);
+}
+
+/* --- 3. MENÚ DE NAVEGACIÓN SECUNDARIO --- */
+.menu-secundario {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-pizarra-200);
+  padding: 0.75rem 1.5rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.lista-pestanas {
+  max-width: 80rem;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.pestana-menu {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: none;
+  background: transparent;
+  color: var(--color-pizarra-600);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pestana-menu:hover {
+  background-color: var(--color-pizarra-100);
+  color: var(--color-pizarra-900);
+}
+
+.pestana-menu-activa {
+  background-color: var(--color-primario);
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+}
+
+.pestana-menu-activa:hover {
+  background-color: var(--color-primario-hover);
+  color: #ffffff;
+}
+
+/* --- 4. BARRA DE ACCIONES Y HERRAMIENTAS --- */
+.contenedor-barra-acciones {
+  max-width: 80rem;
+  width: 100%;
+  margin: 1.25rem auto 0;
+  padding: 0 1.5rem;
+}
+
+.barra-acciones {
+  background-color: var(--color-pizarra-100);
+  border: 1px solid var(--color-pizarra-300);
+  border-radius: 0.75rem;
+  padding: 0.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.grupo-botones-barra {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.separador-barra {
+  height: 1.5rem;
+  width: 1px;
+  background-color: var(--color-pizarra-300);
+  margin: 0 0.25rem;
+}
+
+.boton-icono-barra {
+  width: 2.75rem;
+  height: 2.75rem;
+  background-color: #ffffff;
+  border: 1px solid var(--color-pizarra-300);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.boton-icono-barra:hover {
+  background-color: var(--color-pizarra-50);
+  border-color: var(--color-pizarra-400);
+}
+
+.boton-icono-nuevo {
+  background-color: #e2e8f0;
+  border-color: #94a3b8;
+}
+
+.etiqueta-new {
+  background-color: #2f80ed;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 9px;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+.cuadro-azul-icono {
+  width: 1.75rem;
+  height: 1.75rem;
+  background-color: #2f80ed;
+  color: #ffffff;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.75rem;
+}
+
+.atajos-barra {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: var(--color-pizarra-500);
+  font-weight: 500;
+}
+
+.tecla-atajo {
+  background-color: var(--color-pizarra-200);
+  border: 1px solid var(--color-pizarra-300);
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.25rem;
+  font-family: monospace;
+  font-size: 0.68rem;
+  color: var(--color-pizarra-700);
+}
+
+/* --- 5. ÁREA PRINCIPAL Y CONTENEDORES --- */
+.contenido-principal {
+  flex-grow: 1;
+  max-width: 80rem;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.panel-blanco {
+  background-color: #ffffff;
+  border: 1px solid var(--color-pizarra-300);
+  border-radius: 0.85rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.07);
+}
+
+.panel-gris-detalle {
+  background-color: var(--color-pizarra-50);
+  border: 1px solid var(--color-pizarra-200);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.encabezado-seccion {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.titulo-seccion {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-pizarra-800);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.subtitulo-seccion {
+  font-size: 0.8rem;
+  color: var(--color-pizarra-500);
+  margin-top: 0.2rem;
+}
+
+/* --- 6. GRILLAS DE DISEÑO --- */
+.grilla-modulo {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .grilla-modulo-dividida {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.grilla-kpi-5 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+}
+
+.grilla-tarjetas-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.25rem;
+}
+
+.grilla-2-columnas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.85rem;
+}
+
+/* --- 7. TARJETAS DE INDICADORES (KPI) --- */
+.tarjeta-kpi {
+  background-color: #ffffff;
+  border: 1px solid var(--color-pizarra-200);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+}
+
+.tarjeta-kpi:hover {
+  border-color: #93c5fd;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.tarjeta-kpi-recaudos {
+  background: linear-gradient(135deg, #059669 0%, #0f766e 100%);
+  color: #ffffff;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  box-shadow: 0 6px 16px rgba(5, 150, 105, 0.25);
+}
+
+.cabecera-kpi {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.85rem;
+}
+
+.etiqueta-kpi {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-pizarra-400);
+}
+
+.valor-kpi {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--color-pizarra-900);
+  margin-top: 0.35rem;
+}
+
+/* --- 8. TABLAS ERP --- */
+.contenedor-tabla {
+  overflow-x: auto;
+  border: 1px solid var(--color-pizarra-200);
+  border-radius: 0.5rem;
+}
+
+.tabla-erp {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  text-align: left;
+}
+
+.tabla-erp thead {
+  background-color: var(--color-pizarra-100);
+  color: var(--color-pizarra-700);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 800;
+  border-bottom: 1px solid var(--color-pizarra-200);
+}
+
+.tabla-erp th,
+.tabla-erp td {
+  padding: 0.75rem 0.9rem;
+  border-bottom: 1px solid var(--color-pizarra-100);
+}
+
+.tabla-erp tbody tr {
+  transition: background-color 0.15s ease;
+  cursor: pointer;
+}
+
+.tabla-erp tbody tr:hover {
+  background-color: var(--color-pizarra-50);
+}
+
+.fila-seleccionada {
+  background-color: rgba(37, 99, 235, 0.09) !important;
+  border-left: 4px solid var(--color-primario);
+}
+
+.fila-totales {
+  background-color: var(--color-pizarra-800);
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.texto-derecha {
+  text-align: right;
+}
+
+.texto-centro {
+  text-align: center;
+}
+
+.texto-codigo {
+  font-family: monospace;
+  font-weight: 700;
+}
+
+/* --- 9. FORMULARIOS Y CAMPOS --- */
+.formulario-erp {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.grupo-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.etiqueta-campo {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-pizarra-600);
+}
+
+.entrada-erp {
+  width: 100%;
+  background-color: var(--color-pizarra-50);
+  border: 1px solid var(--color-pizarra-300);
+  border-radius: 0.5rem;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.82rem;
+  color: var(--color-pizarra-800);
+  outline: none;
+  font-family: inherit;
+}
+
+.entrada-erp:focus {
+  background-color: #ffffff;
+  border-color: var(--color-primario);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* --- 10. BOTONES E INSIGNIAS --- */
+.boton-primario {
+  background-color: var(--color-primario);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 0.65rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.boton-primario:hover {
+  background-color: var(--color-primario-hover);
+}
+
+.boton-indigo {
+  background-color: var(--color-indigo);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.boton-indigo:hover {
+  background-color: var(--color-indigo-hover);
+}
+
+.boton-exito {
+  background-color: var(--color-exito);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 0.45rem 0.8rem;
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+}
+
+.boton-peligro {
+  background-color: var(--color-peligro);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 0.45rem 0.8rem;
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+}
+
+.boton-advertencia {
+  background-color: var(--color-advertencia);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 0.45rem 0.8rem;
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+}
+
+.boton-secundario {
+  background-color: var(--color-pizarra-100);
+  color: var(--color-pizarra-700);
+  border: 1px solid var(--color-pizarra-300);
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+}
+
+.insignia {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+}
+
+.insignia-aprobado {
+  background-color: #d1fae5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.insignia-borrador {
+  background-color: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+.insignia-anulado {
+  background-color: #ffe4e6;
+  color: #9f1239;
+  border: 1px solid #fecdd3;
+}
+
+.insignia-contador {
+  background-color: #e0e7ff;
+  color: #3730a3;
+}
+
+/* --- 11. ALERTAS Y NOTIFICACIONES --- */
+.alerta-exito {
+  background-color: #ecfdf5;
+  border-left: 4px solid #10b981;
+  color: #065f46;
+  padding: 0.85rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.alerta-error {
+  background-color: #fef2f2;
+  border-left: 4px solid #ef4444;
+  color: #991b1b;
+  padding: 0.85rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* --- 12. VENTANAS MODALES --- */
+.modal-fondo {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 200;
+}
+
+.modal-caja {
+  background-color: #ffffff;
+  border: 1px solid var(--color-pizarra-300);
+  border-radius: 0.85rem;
+  max-width: 34rem;
+  width: 100%;
+  padding: 1.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+}
+
+/* --- 13. PIE DE PÁGINA --- */
+.pie-pagina {
+  background-color: var(--color-pizarra-800);
+  color: var(--color-pizarra-400);
+  padding: 1.25rem 1.5rem;
+  margin-top: 2rem;
+  font-size: 0.78rem;
+  border-top: 1px solid var(--color-pizarra-700);
+}
